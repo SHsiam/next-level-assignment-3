@@ -8,8 +8,8 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("api/books", bookRoutes);
-app.use("api/borrow", borrowRoutes);
+app.use("/api/books", bookRoutes);
+app.use("/api/borrow", borrowRoutes);
 
 app.use(errorHandler); // global error handler
 
