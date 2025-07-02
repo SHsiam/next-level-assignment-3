@@ -48,6 +48,13 @@ export const borrowedSummary = async (_req: Request, res: Response) => {
 
     borrows.forEach((borrow) => {
       const book = borrow.book as any;
+
+      // ✅ Check if book exists
+      if (!book || !book._id) {
+        console.warn("Skipping borrow with missing book:", borrow);
+        return;
+      }
+
       const key = book._id.toString();
 
       if (!summaryMap.has(key)) {
@@ -71,6 +78,7 @@ export const borrowedSummary = async (_req: Request, res: Response) => {
       data: summary,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       success: false,
       message: "Failed to generate summary",
