@@ -9,7 +9,10 @@ app.use(express.json());
 app.use(cors());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "live-deploy-url"],
+    origin: [
+      "http://localhost:5173",
+      "https://library-management-client-azure.vercel.app",
+    ],
   })
 );
 app.use("/api/books", bookRoutes);
